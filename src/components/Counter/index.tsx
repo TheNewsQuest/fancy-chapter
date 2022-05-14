@@ -1,6 +1,10 @@
+import React from 'react';
 import useCounterStore from '../../stores/counter';
 import styles from './Counter.module.scss';
-const Counter = () => {
+
+interface CounterProps {}
+
+const Counter: React.FC<CounterProps> = () => {
   const count = useCounterStore((state) => state.count);
   const increment = useCounterStore((state) => state.increment);
   const decrement = useCounterStore((state) => state.decrement);

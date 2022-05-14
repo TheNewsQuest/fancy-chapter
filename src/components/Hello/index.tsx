@@ -1,5 +1,11 @@
+import React from 'react';
 import styles from './Hello.module.scss';
-const Hello = ({ name }) => (
+
+interface HelloProps {
+  name: string;
+}
+
+const Hello: React.FC<HelloProps> = ({ name }) => (
   <>
     <h1 className={styles['header-blue']}>Hello {name}</h1>
   </>

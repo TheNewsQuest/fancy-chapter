@@ -1,20 +1,22 @@
 import React from 'react';
-import useCounterStore from '../../stores/counter';
+import useAppStore from '../../store/store';
 import styles from './Counter.module.scss';
 
-interface CounterProps {}
+interface CounterProps {
+  count?: number;
+}
 
 const Counter: React.FC<CounterProps> = () => {
-  const count = useCounterStore((state) => state.count);
-  const increment = useCounterStore((state) => state.increment);
-  const decrement = useCounterStore((state) => state.decrement);
+  const { count, increment, decrement } = useAppStore((state) => state);
   return (
     <>
-      <div>
-        <div className={styles['counter-text']}>Current count is: {count}</div>
-        <button onClick={increment}>Increment</button>
-        <button onClick={decrement}>Decrement</button>
-      </div>
+      <h2>Current count: {count}</h2>
+      <button className={styles['move-right']} onClick={increment}>
+        +
+      </button>
+      <button className={styles['move-right']} onClick={decrement}>
+        -
+      </button>
     </>
   );
 };

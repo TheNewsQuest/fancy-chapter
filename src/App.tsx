@@ -4,7 +4,7 @@ const App = () => {
   return (
     <div className="App">
       <Hello name="TheNewsQuest" />
-      <Counter />
+      <Counter count={1} />
     </div>
   );
 };

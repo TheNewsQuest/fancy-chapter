@@ -8,7 +8,6 @@ const App = () => {
     <>
       <Router>
         <Header />
-        {/* Routes navigation */}
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="/articles/:id" element={<ArticleDetailPage />} />

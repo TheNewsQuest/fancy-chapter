@@ -19,7 +19,7 @@
   align-items: center;
   width: 100%;
   height: 80px;
-  max-width: 1440px;
+  max-width: 1280px;
 }
 
 .main-container {
@@ -33,7 +33,7 @@
 
 .nav-logo {
   align-items: center;
-  margin-left: 20px;
+  margin-left: 10px;
   cursor: pointer;
   text-decoration: none;
   flex-grow: 1;
@@ -41,7 +41,7 @@
 
 .nav-logo-text {
   width: fit-content;
-  font-size: map-get($map: $font-sizes, $key: extra-large);
+  font-size: map-get($map: $font-sizes, $key: large);
   font-family: 'Germania One', cursive;
   color: $white0;
   transition: font-size 0.25s ease;
@@ -50,7 +50,7 @@
 
 .nav-logo-text:hover {
   color: $dark0;
-  font-size: 40px;
+  font-size: map-get($map: $font-sizes, $key: extra-large);
 }
 
 .nav-menu {
@@ -140,6 +140,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    bottom: 40px;
     transform: translate(-100%, 60%);
     font-size: 1.8rem;
     cursor: pointer;

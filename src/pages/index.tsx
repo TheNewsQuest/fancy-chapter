@@ -1,12 +1,11 @@
+import { Container } from '../components';
 import styles from './IndexPage.module.scss';
 
 const IndexPage = () => {
   return (
-    <>
-      <div className={styles['homepage']}>
-        <h1>This is index page</h1>
-      </div>
-    </>
+    <Container className={styles['container']}>
+      <h1>This is inside container of Index Page.</h1>
+    </Container>
   );
 };
 

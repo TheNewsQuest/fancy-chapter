@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Container } from '../../components';
 import styles from './ArticleDetailPage.module.scss';
 
 type ArticleDetailParams = {
@@ -10,9 +11,9 @@ const ArticleDetailPage: React.FC = () => {
   let { id } = useParams<ArticleDetailParams>();
   return (
     <>
-      <div className={styles['article-detail']}>
-        <h1>This is article #{id} page</h1>
-      </div>
+      <Container className={styles['container']}>
+        <h1>Article #{id}</h1>
+      </Container>
     </>
   );
 };

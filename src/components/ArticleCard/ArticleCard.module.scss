@@ -1,0 +1,65 @@
+.article-card {
+  position: absolute;
+  width: 703px;
+  height: 128px;
+  left: 359px;
+  top: 286px;
+  border: 1px solid #3d84b8;
+}
+
+.article-title {
+  position: absolute;
+  width: 418px;
+  height: 47px;
+  left: 129px;
+  top: 15px;
+
+  font-family: "Radio Canada";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #000000;
+}
+
+.article-date {
+  position: absolute;
+  width: 80px;
+  height: 18px;
+  left: 16px;
+  top: 20px;
+
+  font-family: "Radio Canada";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #a3a3a3;
+}
+
+.thumbnail-image {
+  position: absolute;
+  width: 130px;
+  height: 81px;
+  left: 556px;
+  top: 11px;
+}
+
+.article-views {
+  position: absolute;
+  width: 127px;
+  height: 24px;
+  left: 129px;
+  top: 80px;
+}
+
+.article-questions {
+  position: absolute;
+  width: 127px;
+  height: 24px;
+  left: 256px;
+  top: 79px;
+  
+}

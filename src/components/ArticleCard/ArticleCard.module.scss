@@ -14,7 +14,7 @@
   left: 129px;
   top: 15px;
 
-  font-family: "Radio Canada";
+  font-family: "Radio Canada", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -55,11 +55,89 @@
   top: 80px;
 }
 
+.article-views-icon {
+  position: absolute;
+  width: 16px;
+  height: 14px;
+  left: 0px;
+  top: 5px;
+
+  // font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 14px;
+
+  display: flex;
+  align-items: center;
+
+  color: #3d84b8;
+}
+
+.article-views-content {
+  position: absolute;
+  left: 18.9%;
+  right: 22.83%;
+  top: 12.5%;
+  bottom: 16.67%;
+
+  font-family: "Radio Canada";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #3d84b8;
+}
+
 .article-questions {
   position: absolute;
   width: 127px;
   height: 24px;
   left: 256px;
   top: 79px;
-  
+}
+
+.article-questions-icon {
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  left: 7px;
+  top: 5px;
+
+  // font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #3D84B8;
+}
+
+.article-questions-content {
+  position: absolute;
+  left: 18.9%;
+  right: 20.47%;
+  top: 12.5%;
+  bottom: 16.67%;
+
+  font-family: "Radio Canada";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #3d84b8;
 }

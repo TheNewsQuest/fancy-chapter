@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./ArticleCard.module.scss";
+// get our fontawesome imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCoffee, faEye, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 
 interface ArticleCardProps {
   title: string;
@@ -19,15 +22,20 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   return (
     <div className={styles["article-card"]}>
       <h3 className={styles["article-title"]}>{title}</h3>
+      {/* Article views */}
       <div className={styles["article-views"]}>
-        <div> {numberOfView} views</div>
+        <FontAwesomeIcon icon="eye" className={styles["article-views-icon"]}/>
+        <div className={styles["article-views-content"]}> {numberOfView} views</div>
       </div>
+
+      {/* Article number of questions */}
       <div className={styles["article-questions"]}>
-        <div> {numberOfQuestion} questions</div>
+        <FontAwesomeIcon icon={['far', 'square-check']} className={styles["article-questions-icon"]}/>
+        <div className={styles["article-questions-content"]}> {numberOfQuestion} questions</div>
       </div>
-      <div className={styles["thumbnail-image"]}>
-        <img src={thumbnailUrl} alt="" />
-      </div>
+
+
+      <img className={styles["thumbnail-image"]} src={thumbnailUrl} alt="" />
       <div className={styles["article-date"]}>{date.toDateString()}</div>
     </div>
   );

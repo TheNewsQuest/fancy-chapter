@@ -1,14 +1,13 @@
 .article-card {
   box-sizing: border-box;
   // width: 703px;
-  // height: 128px; 
+  // height: 128px;
   padding: 15px;
   border: 1px solid #3d84b8;
   display: flex;
   gap: 20px;
   // text-align: justify;
 }
-
 
 .article-date {
   padding-top: 5px;
@@ -31,18 +30,19 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-
   color: #000000;
 }
 
-.article-views, .article-questions {
+.article-views,
+.article-questions {
   display: flex;
   gap: 5px;
   align-items: center;
   color: #3d84b8;
 }
 
-.article-views-content, .article-questions-content {
+.article-views-content,
+.article-questions-content {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -66,19 +66,17 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
-
   display: flex;
   align-items: center;
-
-  color: #3D84B8;
+  color: #3d84b8;
 }
 
 .middle {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .thumbnail-image {
-    /* width: 130px; */
-    height: 80px;
-    object-fit: cover;
+  /* width: 130px; */
+  height: 80px;
+  object-fit: cover;
 }

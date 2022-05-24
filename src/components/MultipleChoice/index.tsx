@@ -27,14 +27,14 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
         </div>
         <div>
           <ul>
-            {item.answers.map((ans, index) => {
+            {item.answers.map((ans, ansIndex) => {
               return (
                 <li>
                   <label
-                    htmlFor={"option-" + index}
+                    htmlFor={"question-" + index + "-option-" + ansIndex}
                     className={styles["container"]}
                   >
-                    <input type="radio" id={"option-" + index} />
+                    <input name={"question-" + index} type="radio" id={"question-" + index + "-option-" + ansIndex} />
                     <span className={styles["checkmark"]}></span>
                     {ans}
                   </label>

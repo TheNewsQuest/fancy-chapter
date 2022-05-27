@@ -9,13 +9,13 @@
 .question-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
 }
 
 .question-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .question {
@@ -52,6 +52,14 @@ input {
   background: #344fa1;
 }
 
+.answer-input {
+  font-size: 16px;
+}
+
+.correct-answer {
+  color: green;
+  font-size: 16px;
+}
 .check-answers:hover {
   background: #3F3697;
 }

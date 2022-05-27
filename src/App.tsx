@@ -31,7 +31,6 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<ShortAnswer shortAnswerList={short_answer_mock_data}/>} />
           <Route path="/" element={<IndexPage />} />
           <Route path="/articles/:id" element={<ArticleDetailPage />} />
         </Routes>

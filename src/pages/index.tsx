@@ -1,10 +1,12 @@
 import { Container } from '../components';
+import { Article } from '../types/article';
 import styles from './IndexPage.module.scss';
 
 const IndexPage = () => {
+  const mockArticles: Article[] = [];
   return (
     <Container className={styles['container']}>
-      <h1>This is inside container of Index Page.</h1>
+      <div className={styles['header']}>Weekly News Quiz!</div>
     </Container>
   );
 };

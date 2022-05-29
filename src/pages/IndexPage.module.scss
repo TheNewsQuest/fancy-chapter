@@ -1,4 +1,12 @@
+@import '../styles/abstracts/measures';
+
 .container {
   min-height: 100vh;
   padding: 10px;
+}
+
+.header {
+  font-size: map-get($map: $font-sizes, $key: 'large');
+  font-family: 'Rozha One', serif;
+  text-align: center;
 }

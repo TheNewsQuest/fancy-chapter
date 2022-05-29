@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MultipleChoice.module.scss";
 
 interface MultipleChoiceObject {
   question: string;
   answers: string[];
   correctAnswerIndex: number;
+  userChoice: number
 }
 
 interface MultipleChoiceProps {
@@ -12,12 +13,41 @@ interface MultipleChoiceProps {
 }
 
 const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
-  // const [value, setValue] = useState(1);
+  const testhaha = (index: number, item: MultipleChoiceObject) => {
+    if (userChoices[index] === -1) return ""
+    if (userChoices[index] === item.correctAnswerIndex) {
+      return "correct-answer"
+    }
+    
+    return "wrong-answer"
+  }
+  const [userChoices, setUserChoices] = useState<number[]>([])
 
-  // const onChange = (e: RadioChangeEvent) => {
-  //   console.log("radio checked", e.target.value);
-  //   setValue(e.target.value);
-  // };
+  const updateChoices = (index: number, ansIndex: number, item: MultipleChoiceObject) => {
+        
+    item.userChoice = ansIndex
+    const choices = userChoices
+    choices[index] = item.userChoice
+
+    console.log("All choices:");
+    setUserChoices(choices)
+    console.log(userChoices);
+
+    // Disable all li
+    // if (item.userChoice === -1) {
+
+    // }
+  }
+
+  useEffect(() => {
+    const choices: number[] = list.map((item) => {
+      return item.userChoice
+    })
+    console.log("All choices:");
+    console.log(choices);
+    
+    setUserChoices([...choices])
+  }, [])
 
   const question = list.map((item, index) => {
     return (
@@ -29,7 +59,7 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
           <ul>
             {item.answers.map((ans, ansIndex) => {
               return (
-                <li>
+                <li className={userChoices[index] === -1 ? styles["enable-click"] : styles["disable-click"]}  onClick={() => updateChoices(index, ansIndex, item)}>
                   <label
                     htmlFor={"question-" + index + "-option-" + ansIndex}
                     className={styles["container"]}

@@ -37,8 +37,28 @@ li {
   border: 1px solid #344FA1;
 }
 
+.enable-click {
+  pointer-events:auto
+}
+
+.disable-click {
+  pointer-events:none
+}
+
 li:hover {
   background-color: #3d84b8;
+}
+
+.correct-answer {
+  background-color: green;
+}
+
+.wrong-answer {
+  background-color: red;
+}
+
+.no-answer {
+  background-color: white;
 }
 
 /* The container */
@@ -102,4 +122,8 @@ li:hover {
 	height: 8px;
 	border-radius: 50%;
 	background: white;
+}
+
+.haha {
+  background-color: yellow;
 }

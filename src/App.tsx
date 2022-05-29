@@ -25,6 +25,7 @@ const App = () => {
         "Robin Van Persie",
       ],
       correctAnswerIndex: 2,
+      userChoice: -1
     },
     {
       question: "Who created Java?",
@@ -35,6 +36,7 @@ const App = () => {
         "Robin Van Persie",
       ],
       correctAnswerIndex: 2,
+      userChoice: -1
     },
   ];
 

@@ -17,7 +17,7 @@ const App = () => {
 
   let multiple_choice_mock_data = [
     {
-      question: "Who created Java?",
+      question: "Who created Python?",
       answers: [
         "Guido van Rossum",
         "David Beckham",
@@ -25,18 +25,16 @@ const App = () => {
         "Robin Van Persie",
       ],
       correctAnswerIndex: 2,
-      userChoice: -1
+      // userChoice: -1
     },
     {
-      question: "Who created Java?",
+      question: "Is Python a programming language or an animal?",
       answers: [
-        "Guido van Rossum",
-        "David Beckham",
-        "David Copperfield",
-        "Robin Van Persie",
+        "A programming language",
+        "An animal",
       ],
-      correctAnswerIndex: 2,
-      userChoice: -1
+      correctAnswerIndex: 1,
+      // userChoice: -1
     },
   ];
 

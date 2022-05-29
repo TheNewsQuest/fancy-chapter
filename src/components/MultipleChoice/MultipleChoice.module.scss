@@ -1,5 +1,11 @@
-.multiple-choice-container {
+@import '../../styles/abstracts/colors';
+
+.container {
   padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px
 }
 
 .multiple-choice-question {
@@ -7,9 +13,6 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   margin-bottom: 10px;
 }
@@ -25,7 +28,7 @@ ul {
 }
 
 .wrapper {
-  border: 1px solid #344FA1;
+  border: 1px solid $purple300;
 }
 
 li {
@@ -34,23 +37,25 @@ li {
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  border: 1px solid #344FA1;
+  border: 1px solid $purple300;
 }
 
 .enable-click {
+  // background-color: green;
   pointer-events:auto
 }
 
 .disable-click {
+  // background-color: red;
   pointer-events:none
 }
 
 li:hover {
-  background-color: #3d84b8;
+  background-color: $cyan600;
 }
 
 .correct-answer {
-  background-color: green;
+  background-color: #41ad49;
 }
 
 .wrong-answer {
@@ -58,11 +63,11 @@ li:hover {
 }
 
 .no-answer {
-  background-color: white;
+  background-color: $dark0;
 }
 
 /* The container */
-.container {
+.answer-container {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -75,7 +80,7 @@ li:hover {
 }
 
 /* Hide the browser's default radio button */
-.container input {
+.answer-container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -93,12 +98,12 @@ li:hover {
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.answer-container:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
 /* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
+.answer-container input:checked ~ .checkmark {
   background-color: #2196F3;
 }
 
@@ -110,12 +115,12 @@ li:hover {
 }
 
 /* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
+.answer-container input:checked ~ .checkmark:after {
   display: block;
 }
 
 /* Style the indicator (dot/circle) */
-.container .checkmark:after {
+.answer-container .checkmark:after {
  	top: 9px;
 	left: 9px;
 	width: 8px;

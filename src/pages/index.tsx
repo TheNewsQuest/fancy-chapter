@@ -6,7 +6,7 @@ const IndexPage = () => {
   const mockArticles: Article[] = [];
   return (
     <Container className={styles['container']}>
-      <div className={styles['header']}>Weekly News Quiz!</div>
+      <div className={styles['header']}>Weekly News Quiz</div>
     </Container>
   );
 };

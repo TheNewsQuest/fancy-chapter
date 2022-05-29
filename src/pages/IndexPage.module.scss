@@ -6,7 +6,7 @@
 }
 
 .header {
-  font-size: map-get($map: $font-sizes, $key: 'large');
+  font-size: map-get($map: $font-sizes, $key: 'extra-large');
   font-family: 'Rozha One', serif;
   text-align: center;
 }

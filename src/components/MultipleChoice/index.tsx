@@ -28,9 +28,26 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
   }
 
   const chooseBackground = (userChoice: number, currentIndex: number, correctIndex: number) => {
-    if (userChoice === -1 || userChoice !== currentIndex) return styles["no-answer"]
-    if (currentIndex === correctIndex) return styles["correct-answer"]
-    else return styles["wrong-answer"]
+    let itemStyles = []
+    itemStyles.push(styles["multiple-choice-item"])
+    itemStyles.push(userChoice === -1 ? styles["no-answer"] : "")
+    
+    if (userChoice !== -1) {
+      itemStyles.push(styles["disable-click"])
+
+      if (currentIndex === correctIndex) {
+        itemStyles.push(styles["correct-answer"])
+      } 
+
+      if (userChoice === currentIndex && currentIndex !== correctIndex) {
+        itemStyles.push(styles["wrong-answer"])
+      }
+    } 
+
+    // if (userChoice === -1 || userChoice !== currentIndex) return styles["no-answer"]
+    // if (currentIndex === correctIndex) return styles["correct-answer"]
+    // else return styles["wrong-answer"]
+    return itemStyles
   }
 
   useEffect(() => {
@@ -51,10 +68,10 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
           {index + 1}. {item.question}
         </div>
         <div>
-          <ul className={styles["unorder-list"]}>
+          <ul className={[styles["unorder-list"], styles["random-class"]].join(' ')}>
             {item.answers.map((ans, ansIndex) => {
               return (
-                <li className={[styles["multiple-choice-item"], userChoices[index] === -1 ? styles["no-answer"] : chooseBackground(userChoices[index], ansIndex, item.correctAnswerIndex)].join(' ')}  onClick={() => updateChoices(index, ansIndex)}>
+                <li className={chooseBackground(userChoices[index], ansIndex, item.correctAnswerIndex).join(' ')}  onClick={() => updateChoices(index, ansIndex)}>
                   <label
                     htmlFor={"question-" + index + "-option-" + ansIndex}
                     className={styles["answer-container"]}

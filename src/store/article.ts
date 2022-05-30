@@ -3,7 +3,7 @@ import configs from '../configs';
 import { Article } from '../types/article';
 import { immerSet, Slice } from './root';
 
-interface CursorInfo {
+export interface CursorInfo {
   datetime?: string;
   id?: string;
   isEnd?: boolean;
@@ -53,11 +53,9 @@ const createArticleSlice: Slice<ArticleSlice> = (set) => ({
           draft.article.error = (err as Error).message;
         });
       }
-      setTimeout(() => {
-        immerSet(set, (draft) => {
-          draft.article.initLoading = false;
-        });
-      }, 2000); // Timeout for testing
+      immerSet(set, (draft) => {
+        draft.article.initLoading = false;
+      });
     },
     moreFetch: async (cursor: CursorInfo) => {
       immerSet(set, (draft) => {

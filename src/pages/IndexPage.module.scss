@@ -1,7 +1,7 @@
 @import '../styles/abstracts/measures';
 
 .container {
-  min-height: 100vh;
+  min-height: 90vh;
   padding: 10px;
 }
 
@@ -9,4 +9,8 @@
   font-size: map-get($map: $font-sizes, $key: 'extra-large');
   font-family: 'Rozha One', serif;
   text-align: center;
+}
+
+.container-article {
+  margin-bottom: map-get($map: $spacings, $key: 'md');
 }

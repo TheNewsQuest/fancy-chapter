@@ -1,12 +1,18 @@
+@import '../../styles/abstracts/measures';
+@import '../../styles/abstracts/breakpoints';
+
 .article-card {
   box-sizing: border-box;
-  // width: 703px;
-  // height: 128px;
   padding: 15px;
   border: 1px solid #3d84b8;
+  border-radius: map-get($map: $border-radiuses, $key: 'xs');
   display: flex;
   gap: 20px;
-  // text-align: justify;
+  min-height: 128px;
+}
+
+.article-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
 .article-date {
@@ -20,7 +26,7 @@
 }
 
 .article-statistics {
-  margin-top: 18px;
+  margin-top: 24px;
   display: flex;
   gap: 30px;
 }
@@ -76,7 +82,7 @@
 }
 
 .thumbnail-image {
-  /* width: 130px; */
   height: 80px;
   object-fit: cover;
+  width: 100%;
 }

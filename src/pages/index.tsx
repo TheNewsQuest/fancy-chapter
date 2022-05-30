@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { Container } from '../components';
+import { ArticleCard, Container } from '../components';
+import ReadMoreButton from '../components/ReadMoreButton';
 import Spinner from '../components/Spinner';
 import useStore from '../store/root';
 import styles from './IndexPage.module.scss';
@@ -9,8 +10,9 @@ const IndexPage = () => {
     articles,
     initLoading,
     moreLoading,
-    error,
+    cursor,
     initFetch: initFetchArticles,
+    moreFetch: moreFetchArticles,
   } = useStore((state) => state.article);
 
   useEffect(() => {
@@ -25,11 +27,23 @@ const IndexPage = () => {
           <Spinner />
         ) : (
           articles.map((article) => (
-            <div key={article._id}>{article.title}</div>
+            <div key={article._id} className={styles['container-article']}>
+              <ArticleCard
+                path={`/articles/${article._id}`}
+                title={article.title}
+                date={new Date(article.postedAt)}
+                questCount={article.quests.length}
+                thumbnailURL={article.thumbnailURL}
+              />
+            </div>
           ))
         )}
       </div>
-      <button>Read More</button>
+      <ReadMoreButton
+        asyncAction={moreFetchArticles}
+        cursor={cursor}
+        loading={moreLoading}
+      />
     </Container>
   );
 };

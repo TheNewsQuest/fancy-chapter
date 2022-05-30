@@ -14,6 +14,26 @@ const App = () => {
       'https://static01.nyt.com/images/2022/04/25/climate/00cli-turfban1-LNNQ/merlin_204818043_fa28d456-8e9c-40d5-a4ad-2634453cdbb9-mediumThreeByTwo252.jpg?quality=100&auto=webp',
   };
 
+  let multiple_choice_mock_data = [
+    {
+      question: 'Who created Python?',
+      answers: [
+        'Guido van Rossum',
+        'David Beckham',
+        'David Copperfield',
+        'Robin Van Persie',
+      ],
+      correctAnswerIndex: 2,
+      // userChoice: -1
+    },
+    {
+      question: 'Is Python a programming language or an animal?',
+      answers: ['A programming language', 'An animal'],
+      correctAnswerIndex: 1,
+      // userChoice: -1
+    },
+  ];
+
   return (
     <>
       <Router>

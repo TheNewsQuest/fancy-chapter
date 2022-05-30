@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Footer, Header } from './components';
-import ShortAnswer from './components/ShortAnswer';
 import IndexPage from './pages';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 
@@ -17,14 +16,33 @@ const App = () => {
 
   let short_answer_mock_data = [
     {
-      question: "What is the famous genre of music in 2022?",
-      answer: "Pop"
+      question: 'What is the famous genre of music in 2022?',
+      answer: 'Pop',
     },
     {
-      question: "How old is the Earth?",
-      answer: "4.543 billion years"
-    }
-  ]
+      question: 'How old is the Earth?',
+      answer: '4.543 billion years',
+    },
+  ];
+  let multiple_choice_mock_data = [
+    {
+      question: 'Who created Python?',
+      answers: [
+        'Guido van Rossum',
+        'David Beckham',
+        'David Copperfield',
+        'Robin Van Persie',
+      ],
+      correctAnswerIndex: 2,
+      // userChoice: -1
+    },
+    {
+      question: 'Is Python a programming language or an animal?',
+      answers: ['A programming language', 'An animal'],
+      correctAnswerIndex: 1,
+      // userChoice: -1
+    },
+  ];
 
   return (
     <>

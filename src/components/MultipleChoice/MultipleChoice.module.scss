@@ -1,0 +1,142 @@
+@import '../../styles/abstracts/colors';
+
+.container {
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}
+
+.multiple-choice-question {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+
+  margin-bottom: 10px;
+}
+
+/* Reset list style */
+.unorder-list {
+  list-style:none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.random-class {
+  margin: 0;
+  // background-color: coral;
+}
+
+
+.wrapper {
+  border: 1px solid $purple300;
+}
+
+.multiple-choice-item {
+  padding: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  border: 1px solid $purple300;
+  border-radius: 3px;
+}
+
+.multiple-choice-item:hover {
+  background-color: $cyan600;
+}
+
+.enable-click {
+  // background-color: green;
+  pointer-events:auto
+}
+
+.disable-click {
+  // background-color: red;
+  pointer-events:none
+}
+
+
+.correct-answer {
+  background-color: #41ad49;
+}
+
+.wrong-answer {
+  background-color: red;
+}
+
+.no-answer {
+  background-color: $dark0;
+}
+
+/* The container */
+.answer-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  // margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.answer-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.answer-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.answer-container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.answer-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.answer-container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.haha {
+  background-color: yellow;
+}

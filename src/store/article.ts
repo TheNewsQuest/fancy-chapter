@@ -33,36 +33,61 @@ const createArticleSlice: Slice<ArticleSlice> = (set) => ({
     moreLoading: false,
     error: undefined,
     initFetch: async () => {
-      immerSet(set, (draft) => (draft.article.initLoading = true));
+      immerSet(set, (draft) => {
+        draft.article.initLoading = true;
+      });
       try {
-        const res = await axios.get(`${configs.DUTY_V1_API_URL}/articles`);
-        immerSet(set, (draft) => void (draft.article.articles = res.data.data));
-        immerSet(
-          set,
-          (draft) =>
-            void (draft.article.cursor = {
-              ...res.data.cursor,
-            })
-        );
+        const res = await axios.get(`${configs.DUTY_API_V1_URL}/articles`);
+        // Update articles data
+        immerSet(set, (draft) => {
+          draft.article.articles = res.data.data;
+        });
+        // Update cursor
+        immerSet(set, (draft) => {
+          draft.article.cursor = {
+            ...res.data.cursor,
+          };
+        });
       } catch (err) {
-        immerSet(
-          set,
-          (draft) => void (draft.article.error = (err as Error).message)
-        );
+        immerSet(set, (draft) => {
+          draft.article.error = (err as Error).message;
+        });
       }
-      immerSet(set, (draft) => void (draft.article.initLoading = false));
+      setTimeout(() => {
+        immerSet(set, (draft) => {
+          draft.article.initLoading = false;
+        });
+      }, 2000); // Timeout for testing
     },
     moreFetch: async (cursor: CursorInfo) => {
-      immerSet(set, (draft) => void (draft.article.moreLoading = true));
+      immerSet(set, (draft) => {
+        draft.article.moreLoading = true;
+      });
       try {
-        const res = await axios.get(`${configs.DUTY_V1_API_URL}/articles`, {
+        const res = await axios.get(`${configs.DUTY_API_V1_URL}/articles`, {
           params: {
             datetime: cursor.datetime,
             id: cursor.id,
           },
         });
-        // if cursor == null && data.length > 0 => disabled read more button
-      } catch (err) {}
+        // Update articles data
+        immerSet(set, (draft) => {
+          draft.article.articles.push(...res.data.data);
+        });
+        // Update cursor
+        immerSet(set, (draft) => {
+          draft.article.cursor = {
+            ...res.data.cursor,
+          };
+        });
+      } catch (err) {
+        immerSet(set, (draft) => {
+          draft.article.error = (err as Error).message;
+        });
+      }
+      immerSet(set, (draft) => {
+        draft.article.moreLoading = false;
+      });
     },
   },
 });

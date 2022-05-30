@@ -51,10 +51,10 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
           {index + 1}. {item.question}
         </div>
         <div>
-          <ul>
+          <ul className={styles["unorder-list"]}>
             {item.answers.map((ans, ansIndex) => {
               return (
-                <li className={userChoices[index] === -1 ? styles["no-answer"] : chooseBackground(userChoices[index], ansIndex, item.correctAnswerIndex)}  onClick={() => updateChoices(index, ansIndex)}>
+                <li className={[styles["multiple-choice-item"], userChoices[index] === -1 ? styles["no-answer"] : chooseBackground(userChoices[index], ansIndex, item.correctAnswerIndex)].join(' ')}  onClick={() => updateChoices(index, ansIndex)}>
                   <label
                     htmlFor={"question-" + index + "-option-" + ansIndex}
                     className={styles["answer-container"]}

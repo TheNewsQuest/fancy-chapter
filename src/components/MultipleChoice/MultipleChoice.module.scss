@@ -18,7 +18,7 @@
 }
 
 /* Reset list style */
-ul {
+.unorder-list {
   list-style:none;
   margin: 0;
   padding: 0;
@@ -27,17 +27,23 @@ ul {
   gap: 10px;
 }
 
+
 .wrapper {
   border: 1px solid $purple300;
 }
 
-li {
+.multiple-choice-item {
   padding: 8px;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   border: 1px solid $purple300;
+  border-radius: 3px;
+}
+
+.multiple-choice-item:hover {
+  background-color: $cyan600;
 }
 
 .enable-click {
@@ -50,9 +56,6 @@ li {
   pointer-events:none
 }
 
-li:hover {
-  background-color: $cyan600;
-}
 
 .correct-answer {
   background-color: #41ad49;

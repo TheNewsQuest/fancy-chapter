@@ -6,14 +6,14 @@ import styles from './IndexPage.module.scss';
 const IndexPage = () => {
   const {
     articles,
-    initialLoading,
+    initLoading: initialLoading,
     moreLoading,
     error,
-    initialFetch: fetchArticles,
+    initFetch: initialFetchArticles,
   } = useStore((state) => state.article);
 
   useEffect(() => {
-    fetchArticles();
+    initialFetchArticles();
   });
 
   return (

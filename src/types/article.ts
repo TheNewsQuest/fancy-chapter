@@ -1,6 +1,8 @@
 /* * Typings for MongoDB 'articles' collection * */
 
 export interface Article {
+  _id: string;
+
   title: string;
 
   thumbnailURL?: string;
@@ -15,17 +17,17 @@ export interface Article {
 
   subcategory?: string;
 
-  provider: Provider;
+  provider: string;
 
-  providerThumbnailURL?: string;
+  providerAvatarURL?: string;
 
   quests: Quest[];
 
-  postedAt: Date;
+  postedAt: string;
 
-  createdAt: Date;
+  createdAt: string;
 
-  deletedAt?: Date;
+  deletedAt?: string | null;
 }
 
 export interface Quest {
@@ -35,7 +37,7 @@ export interface Quest {
 
   answer: number;
 
-  createdAt: Date;
+  createdAt: string;
 }
 
 export enum Provider {

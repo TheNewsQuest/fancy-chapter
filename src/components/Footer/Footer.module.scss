@@ -1,0 +1,11 @@
+@import '../../styles/abstracts/colors';
+@import '../../styles/abstracts/measures';
+
+.footer-container {
+  font-size: map-get($map: $font-sizes, $key: medium);
+  display: flex;
+  height: 72px;
+  align-items: center;
+  justify-content: center;
+  border-top: solid 1px $purple600;
+}

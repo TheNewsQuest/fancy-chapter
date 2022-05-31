@@ -1,0 +1,7 @@
+@import '../../styles/abstracts/colors';
+
+.spinner {
+  :global(.ant-spin-dot-item) {
+    background-color: $purple600;
+  }
+}

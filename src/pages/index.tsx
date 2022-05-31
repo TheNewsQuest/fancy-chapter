@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+import { NotificationPlacement } from 'antd/lib/notification';
 import { useEffect } from 'react';
 import { ArticleCard, Container } from '../components';
 import ReadMoreButton from '../components/ReadMoreButton';
@@ -11,6 +13,7 @@ const IndexPage = () => {
     initLoading,
     moreLoading,
     cursor,
+    error,
     initFetch: initFetchArticles,
     moreFetch: moreFetchArticles,
   } = useStore((state) => state.article);
@@ -18,6 +21,29 @@ const IndexPage = () => {
   useEffect(() => {
     initFetchArticles();
   }, [initFetchArticles]);
+
+  /**
+   * Open a error notification for acknowledging end-user
+   * @param placement Placement of Pop-up notification
+   * @param description Description payload
+   */
+  const openErrorNotification = (
+    placement: NotificationPlacement,
+    description: string
+  ) => {
+    notification.error({
+      message: 'Unexpected Error occurred!',
+      description: description,
+      placement,
+    });
+  };
+
+  /**
+   * Pop-up error notification if error is defined
+   */
+  useEffect(() => {
+    if (error) openErrorNotification('bottomRight', error);
+  }, [error]);
 
   return (
     <Container className={styles['container']}>
@@ -39,11 +65,13 @@ const IndexPage = () => {
           ))
         )}
       </div>
-      <ReadMoreButton
-        asyncAction={moreFetchArticles}
-        cursor={cursor}
-        loading={moreLoading}
-      />
+      <div className={styles['read-more-section']}>
+        <ReadMoreButton
+          asyncAction={moreFetchArticles}
+          cursor={cursor}
+          loading={moreLoading}
+        />
+      </div>
     </Container>
   );
 };

@@ -1,10 +1,11 @@
 @import '../../styles/abstracts/measures';
 @import '../../styles/abstracts/breakpoints';
+@import '../../styles/abstracts/colors';
 
 .article-card {
   box-sizing: border-box;
   padding: 15px;
-  border: 1px solid #3d84b8;
+  border: 1px solid $purple600;
   border-radius: map-get($map: $border-radiuses, $key: 'xs');
   display: flex;
   gap: 20px;
@@ -44,7 +45,7 @@
   display: flex;
   gap: 5px;
   align-items: center;
-  color: #3d84b8;
+  color: $purple600;
 }
 
 .article-views-content,
@@ -64,7 +65,7 @@
   display: flex;
   align-items: center;
 
-  color: #3d84b8;
+  color: $purple600;
 }
 
 .article-questions-icon {
@@ -74,7 +75,7 @@
   line-height: 14px;
   display: flex;
   align-items: center;
-  color: #3d84b8;
+  color: $purple600;
 }
 
 .middle {

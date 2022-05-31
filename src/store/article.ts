@@ -53,9 +53,12 @@ const createArticleSlice: Slice<ArticleSlice> = (set) => ({
           draft.article.error = (err as Error).message;
         });
       }
-      immerSet(set, (draft) => {
-        draft.article.initLoading = false;
-      });
+      // NOTE: Fake async
+      setTimeout(() => {
+        immerSet(set, (draft) => {
+          draft.article.initLoading = false;
+        });
+      }, 1000);
     },
     moreFetch: async (cursor: CursorInfo) => {
       immerSet(set, (draft) => {
@@ -69,9 +72,12 @@ const createArticleSlice: Slice<ArticleSlice> = (set) => ({
           },
         });
         // Update articles data
-        immerSet(set, (draft) => {
-          draft.article.articles.push(...res.data.data);
-        });
+        // NOTE: Fake async
+        setTimeout(() => {
+          immerSet(set, (draft) => {
+            draft.article.articles.push(...res.data.data);
+          });
+        }, 1000);
         // Update cursor
         immerSet(set, (draft) => {
           draft.article.cursor = {
@@ -83,9 +89,12 @@ const createArticleSlice: Slice<ArticleSlice> = (set) => ({
           draft.article.error = (err as Error).message;
         });
       }
-      immerSet(set, (draft) => {
-        draft.article.moreLoading = false;
-      });
+      // NOTE: Fake async
+      setTimeout(() => {
+        immerSet(set, (draft) => {
+          draft.article.moreLoading = false;
+        });
+      }, 1000);
     },
   },
 });

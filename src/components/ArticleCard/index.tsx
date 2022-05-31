@@ -1,3 +1,4 @@
+import { Skeleton } from 'antd';
 import { format } from 'date-fns';
 import React from 'react';
 import { FaEye, FaRegCheckSquare } from 'react-icons/fa';
@@ -53,11 +54,15 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         </div>
 
         <div className={styles['right']}>
-          <img
-            className={styles['thumbnail-image']}
-            src={thumbnailURL}
-            alt=""
-          />
+          {!thumbnailURL ? (
+            <Skeleton.Image className={styles['thumbnail-images']} />
+          ) : (
+            <img
+              className={styles['thumbnail-image']}
+              src={thumbnailURL}
+              alt=""
+            />
+          )}
         </div>
       </div>
     </Link>

@@ -53,18 +53,66 @@
   border-color: #141414;
 }
 
-.ant-tabs-tab {
-    font-family: 'Radio Canada';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+// .card-container {
+//   :global(.ant-tabs-nav) {
+//     font-size: 18px !important;
+//   }
+// }
 
+.tab-container {
+  // Todo: Remove this margin later
+  margin: 20px 50px;
+  border: 1px solid $purple300;
+
+  :global(.ant-tabs-tab) {
+    font-size: 18px;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 0px;
+
+    // border: 1px solid #3d84b8;
+  }
+
+  :global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab,) {
+    border: 0px solid $purple300;
+  }
+  // :global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab) {
+  //   border: 1px solid #3d84b8;
+  // }
+
+  :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
     color: $dark0;
+    // background-color: rgba(52, 79, 161, 0.85);
+  }
+  :global(.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active,) {
+    background-color: rgba(52, 79, 161, 0.85);
+  }
+
+  :global(.ant-tabs > .ant-tabs-nav .ant-tabs-nav-list) {
+    flex-grow: 1;
+  }
+
+  :global(.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab) {
+    margin: 0px;
+  }
+
+  :global(.ant-tabs-nav) {
+    border-bottom: 1px solid $purple300;
+  }
 }
+
+// .ant-tabs-tab {
+//     font-family: 'Radio Canada';
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 18px;
+//     line-height: 22px;
+//     display: flex;
+//     align-items: center;
+//     text-align: center;
+
+//     color: $dark0;
+// }
 
 .card-container {
     margin: 0px 200px;

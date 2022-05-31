@@ -41,9 +41,9 @@ const onChange = (key: string) => {
 
 const SwitchTab = () => {
   return (
-      <div className="card-container">
+      <div className={styles["tab-container"]}>
         <Tabs type="card" centered={true} defaultActiveKey="1" onChange={onChange}>
-          <TabPane tab="Multiple choice" key="1">
+          <TabPane tab="Multiple Choice" key="1">
             <MultipleChoice list={multiple_choice_mock_data} />
           </TabPane>
           <TabPane tab="Short Answer" key="2">

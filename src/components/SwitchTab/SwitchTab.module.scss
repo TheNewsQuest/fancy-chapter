@@ -23,7 +23,7 @@
 .card-container > .ant-tabs-card .ant-tabs-tab-active,
 [data-theme="compact"] .card-container > .ant-tabs-card .ant-tabs-tab-active {
   background: rgba(52, 79, 161, 0.85);
-  border-color: #344FA1;
+  border-color: $purple300;
 }
 #components-tabs-demo-card-top .code-box-demo {
   padding: 24px;
@@ -85,7 +85,7 @@
     // background-color: rgba(52, 79, 161, 0.85);
   }
   :global(.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active,) {
-    background-color: rgba(52, 79, 161, 0.85);
+    background-color: $purple200;
   }
 
   :global(.ant-tabs > .ant-tabs-nav .ant-tabs-nav-list) {

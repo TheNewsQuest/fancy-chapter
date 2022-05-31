@@ -1,11 +1,13 @@
 @import '../../styles/abstracts/measures';
 @import '../../styles/abstracts/breakpoints';
 @import '../../styles/abstracts/colors';
+@import '../../styles/abstracts/mixins';
 
 .article-card {
   box-sizing: border-box;
   padding: 15px;
   border: 1px solid $purple600;
+  border-radius: map-get($map: $border-radiuses, $key: 'xs');
   display: flex;
   gap: 20px;
   min-height: 128px;
@@ -27,9 +29,18 @@
 }
 
 .article-statistics {
-  margin-top: 36px;
+  margin-top: 30px;
   display: flex;
   gap: 30px;
+}
+
+@media screen and (max-width: 576px) {
+  .article-statistics {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .article-title {
@@ -38,6 +49,16 @@
   font-size: 18px;
   line-height: 22px;
   color: #000000;
+}
+
+.article-title:hover {
+  color: $cyan600;
+}
+
+.article-preview {
+  margin-top: 0;
+  max-width: fit-content;
+  color: #333333;
 }
 
 .article-views,
@@ -83,7 +104,7 @@
 }
 
 .thumbnail-image {
-  height: 90px;
+  height: 108px;
   object-fit: cover;
   width: 100%;
 }

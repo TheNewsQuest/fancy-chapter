@@ -17,6 +17,14 @@ const IndexPage = () => {
     moreFetch: moreFetchArticles,
   } = useStore((state) => state.article);
 
+  /**
+   * Extract preview from wall of text
+   * @param text Text-based content
+   * @returns Preview of text
+   */
+  const extractPreview = (text: string, limit = 10): string =>
+    `${text.split(' ').slice(0, limit).join(' ')}...`;
+
   useEffect(() => {
     initFetchArticles();
   }, [initFetchArticles]);
@@ -46,7 +54,7 @@ const IndexPage = () => {
 
   return (
     <Container className={styles['container']}>
-      <div className={styles['header']}>Weekly News Quiz</div>
+      <div className={styles['header']}>Weekly News Quest</div>
       <div className="article-container">
         {initLoading
           ? [...Array(5)].map((e, i) => (
@@ -57,8 +65,10 @@ const IndexPage = () => {
           : articles.map((article) => (
               <div key={article._id} className={styles['container-article']}>
                 <ArticleCard
+                  provider={article.provider}
                   path={`/articles/${article._id}`}
                   title={article.title}
+                  preview={extractPreview(article.content)}
                   date={new Date(article.postedAt)}
                   questCount={article.quests.length}
                   thumbnailURL={article.thumbnailURL}

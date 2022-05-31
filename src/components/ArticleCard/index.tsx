@@ -1,6 +1,7 @@
 import { Skeleton } from 'antd';
 import { format } from 'date-fns';
 import React from 'react';
+import { BsNewspaper } from 'react-icons/bs';
 import { FaEye, FaRegCheckSquare } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './ArticleCard.module.scss';
@@ -9,6 +10,8 @@ interface ArticleCardProps {
   title: string;
   date: Date;
   path: string;
+  preview: string;
+  provider?: string;
   viewCount?: number;
   questCount: number;
   thumbnailURL?: string;
@@ -19,6 +22,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   date,
   viewCount,
   path,
+  preview,
+  provider,
   questCount,
   thumbnailURL,
 }) => {
@@ -31,9 +36,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
         </div>
         <div className={styles['middle']}>
-          <a href={path} className={styles['article-title']}>
-            {title}
-          </a>
+          <p className={styles['article-title']}>{title}</p>
+          <p className={styles['article-preview']}>{preview}</p>
           <div className={styles['article-statistics']}>
             {/* Article views */}
             <div className={styles['article-views']}>
@@ -47,7 +51,15 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             <div className={styles['article-questions']}>
               <FaRegCheckSquare className={styles['article-questions-icon']} />
               <div className={styles['article-questions-content']}>
-                {questCount} questions
+                {questCount} quests
+              </div>
+            </div>
+
+            {/* Article Provider */}
+            <div className={styles['article-questions']}>
+              <BsNewspaper className={styles['article-questions-icon']} />
+              <div className={styles['article-questions-content']}>
+                {provider || 'Unknown'}
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Footer, Header } from './components';
 import IndexPage from './pages';
 import ArticleDetailPage from './pages/ArticleDetailPage';
+import InsightPage from './pages/InsightPage';
 
 const App = () => {
   let article_card_mock_data = {
@@ -52,6 +53,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="/articles/:id" element={<ArticleDetailPage />} />
+          <Route path="/insight" element={<InsightPage />} />
         </Routes>
         <BackTop />
         <Footer />

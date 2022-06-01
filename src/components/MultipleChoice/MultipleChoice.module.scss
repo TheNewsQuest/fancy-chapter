@@ -63,11 +63,11 @@
 
 
 .correct-answer {
-  background-color: #41ad49;
+  background-color: $green300;
 }
 
 .wrong-answer {
-  background-color: red;
+  background-color: $red400;
 }
 
 .no-answer {
@@ -112,7 +112,7 @@
 
 /* When the radio button is checked, add a blue background */
 .answer-container input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: $cyan600;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -134,9 +134,14 @@
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
-	background: white;
+	background: $white0;
 }
 
-.haha {
-  background-color: yellow;
+.total-scores {
+  text-align: center;
+  padding: 8px;
+  font-size: 28px;
+  font-family: "Germania One", cursive;
+  color: $purple600;
+  margin-top: 10px;
 }

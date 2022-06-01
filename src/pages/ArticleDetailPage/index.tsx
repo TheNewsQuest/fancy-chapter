@@ -4,7 +4,7 @@ import { NotificationPlacement } from "antd/lib/notification";
 import { useParams } from "react-router-dom";
 import { Container } from "../../components";
 import styles from "./ArticleDetailPage.module.scss";
-import { useStore2 } from "../../store/root";
+import useStore from "../../store/root";
 
 type ArticleDetailParams = {
   id: string;
@@ -16,7 +16,7 @@ const ArticleDetailPage: React.FC = () => {
     initLoading,
     error,
     initFetch: initFetchArticleDetail,
-  } = useStore2((state) => state.articleDetail);
+  } = useStore((state) => state.articleDetail);
 
   let { id } = useParams<ArticleDetailParams>();
   // const mock = mockData[0];

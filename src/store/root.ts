@@ -20,8 +20,8 @@ export const immerSet = <T extends object>(
   fn: (draft: Draft<T>) => void
 ) => set(produce<T>(fn));
 
-export type RootSlice = ArticleSlice;
-export type RootSlice2 = ArticleDetailSlice;
+export type RootSlice = ArticleSlice & ArticleDetailSlice;
+// export type RootSlice2 = ArticleDetailSlice;
 /**
  * Create Root slice for Zustand single global store
  * @param set State Setter
@@ -33,15 +33,8 @@ const createRootSlice = (
   get: GetState<RootSlice>
 ) => ({
   ...createArticleSlice(set, get),
-});
-
-const createRootSlice2 = (
-  set: SetState<RootSlice2>,
-  get: GetState<RootSlice2>
-) => ({
   ...createArticleDetailSlice(set, get),
 });
 
 const useStore = create<RootSlice>()(devtools(createRootSlice));
-const useStore2 = create<RootSlice2>()(devtools(createRootSlice2));
-export {useStore, useStore2};
+export default useStore;

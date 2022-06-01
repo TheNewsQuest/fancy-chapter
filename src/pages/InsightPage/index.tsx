@@ -1,5 +1,6 @@
 import { Select } from 'antd';
 import notification, { NotificationPlacement } from 'antd/lib/notification';
+import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { Container } from '../../components';
 import KeywordWordCloud from '../../components/KeywordWordCloud';
@@ -106,12 +107,8 @@ const InsightPage: React.FC<{}> = () => {
     <Container className={styles['trend-page-container']}>
       <div className={styles['header']}>Satisfy Your Insights</div>
       {/* Word Cloud section */}
-      <div
-        style={{
-          marginBottom: 10,
-        }}
-      >
-        <div className={styles['selector']}>
+      <div className={styles['wordcloud-section']}>
+        <div className={clsx(styles['selector'], styles['selector-pos'])}>
           <Select
             value={loadingCategory ? 'Loading...' : categorySelection}
             onChange={handleCategoryChange}
@@ -123,18 +120,18 @@ const InsightPage: React.FC<{}> = () => {
             ))}
           </Select>
         </div>
-      </div>
-      <div
-        className={styles['wordcloud-container']}
-        style={{
-          display: loadingKeyword || loadingCategory ? 'flex' : 'block',
-        }}
-      >
-        {loadingKeyword || loadingCategory ? (
-          <Spinner />
-        ) : (
-          <KeywordWordCloud data={dataKeyword} />
-        )}
+        <div
+          className={styles['wordcloud-container']}
+          style={{
+            display: loadingKeyword || loadingCategory ? 'flex' : 'block',
+          }}
+        >
+          {loadingKeyword || loadingCategory ? (
+            <Spinner />
+          ) : (
+            <KeywordWordCloud data={dataKeyword} />
+          )}
+        </div>
       </div>
     </Container>
   );

@@ -11,7 +11,11 @@
   font-size: map-get($map: $font-sizes, $key: 'extra-large');
   font-family: 'Rozha One', serif;
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.wordcloud-section {
+  margin-top: 10px;
 }
 
 .selector {
@@ -19,6 +23,12 @@
     min-width: 100px;
     border: 1px solid $purple600;
   }
+}
+
+.selector-pos {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
 }
 
 .wordcloud-container {

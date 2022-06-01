@@ -11,11 +11,12 @@
   display: flex;
   gap: 20px;
   min-height: 128px;
+  box-shadow: none;
+  transition: box-shadow 0.3s ease-out;
 }
 
 .article-card:hover {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(63, 54, 152, 0.5) -7px 7px;
 }
 
 .article-date {
@@ -52,7 +53,7 @@
 }
 
 .article-title:hover {
-  color: $cyan600;
+  color: $purple600;
 }
 
 .article-preview {

@@ -13,14 +13,18 @@ interface KeywordState {
   fetch: (category: string) => Promise<void>;
 }
 
+interface CategoryState {
+  nameList: string[];
+  loading: boolean;
+  error?: string;
+  fetch: () => Promise<void>;
+}
+
+interface MonthlyTotalArticlesState {}
+
 export interface StatsSlice {
   stats: {
-    category: {
-      nameList: string[];
-      loading: boolean;
-      error?: string;
-      fetch: () => Promise<void>;
-    };
+    category: CategoryState;
     keyword: KeywordState;
   };
 }

@@ -6,7 +6,10 @@
 }
 
 .article {
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden
 }
 
 .title {
@@ -19,7 +22,10 @@
 }
 
 .thumbnail {
-
+  object-fit: cover;
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%
 }
 
 .content {

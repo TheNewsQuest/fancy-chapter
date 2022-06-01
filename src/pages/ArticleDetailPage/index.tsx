@@ -40,6 +40,18 @@ const ArticleDetailPage: React.FC = () => {
     if (error) openErrorNotification("bottomRight", error);
   }, [error]);
 
+  const getParagraph = (content: string) => {
+    if (content && content.length > 0) {
+      const res = content.split(/\r?\n/)
+      return res.map((paragraph) => {
+        console.log(paragraph);
+        
+        return <p className={styles["paragraph"]}>{paragraph}</p>
+      })
+    }
+    return ""
+  }
+
   return (
     <>
       <Container className={styles["container"]}>
@@ -57,7 +69,15 @@ const ArticleDetailPage: React.FC = () => {
               src={article.thumbnailURL}
               alt="Alt text"
             />
-            <div className={styles["content"]}>{article.content}</div>
+            <div className={styles["content"]}>
+            { 
+
+              getParagraph(article.content)
+              // article.content.split(/\r?\n/).map((paragraph) => {
+              //   return <p className={styles["paragraph"]}>{paragraph}</p>
+              // })
+            }
+            </div>
             {/* TODO: Question Tab */}
           </div>
         )}

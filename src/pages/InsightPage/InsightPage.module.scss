@@ -20,7 +20,7 @@
 
 .selector {
   :global(.ant-select-selector) {
-    min-width: 100px;
+    min-width: 110px;
     border: 1px solid $purple600;
   }
 }
@@ -31,13 +31,19 @@
   margin-bottom: 5px;
 }
 
-.wordcloud-container {
+.chart-label {
+  font-weight: 800;
+  font-size: map-get($map: $font-sizes, $key: 'medium');
+  margin-bottom: 0;
+}
+
+.chart-container {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center; /* for single line flex container */
   align-content: center; /* for multi-line flex container */
-  min-height: 400px;
+  min-height: 420px;
   padding: 15px;
   border: 1px solid $purple600;
   border-radius: map-get($map: $border-radiuses, $key: 'xs');

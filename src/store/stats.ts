@@ -20,12 +20,22 @@ interface CategoryState {
   fetch: () => Promise<void>;
 }
 
-interface MonthlyTotalArticlesState {}
+export interface CategoryArticleData {
+  category: string;
+  value: number;
+}
+interface MonthlyTotalArticlesState {
+  data: CategoryArticleData[];
+  loading: boolean;
+  error?: string;
+  fetch: (month: number, year: number) => Promise<void>;
+}
 
 export interface StatsSlice {
   stats: {
     category: CategoryState;
     keyword: KeywordState;
+    monthlyTotalArticles: MonthlyTotalArticlesState;
   };
 }
 
@@ -45,23 +55,17 @@ const createStatsSlice: Slice<StatsSlice> = (set) => ({
           const res = await axios.get(
             `${configs.DUTY_API_V1_URL}/categories/names`
           );
-          // NOTE: Fake async
-          setTimeout(() => {
-            immerSet(set, (draft) => {
-              draft.stats.category.nameList = res.data.data;
-            });
-          }, 1500);
+          immerSet(set, (draft) => {
+            draft.stats.category.nameList = res.data.data;
+          });
         } catch (err) {
           immerSet(set, (draft) => {
             draft.stats.category.error = (err as Error).message;
           });
         }
-        // NOTE: Fake async
-        setTimeout(() => {
-          immerSet(set, (draft) => {
-            draft.stats.category.loading = false;
-          });
-        }, 1500);
+        immerSet(set, (draft) => {
+          draft.stats.category.loading = false;
+        });
       },
       error: undefined,
     },
@@ -85,12 +89,40 @@ const createStatsSlice: Slice<StatsSlice> = (set) => ({
             draft.stats.keyword.error = (err as Error).message;
           });
         }
-        // NOTE: Fake async
-        setTimeout(() => {
+        immerSet(set, (draft) => {
+          draft.stats.keyword.loading = false;
+        });
+      },
+    },
+    monthlyTotalArticles: {
+      data: [],
+      loading: false,
+      error: undefined,
+      fetch: async (month: number, year: number) => {
+        immerSet(set, (draft) => {
+          draft.stats.monthlyTotalArticles.loading = true;
+        });
+        try {
+          const res = await axios.get(
+            `${configs.DUTY_API_V1_URL}/stats/monthly-total-articles`,
+            {
+              params: {
+                month,
+                year,
+              },
+            }
+          );
           immerSet(set, (draft) => {
-            draft.stats.keyword.loading = false;
+            draft.stats.monthlyTotalArticles.data = res.data.data;
           });
-        }, 1500);
+        } catch (err) {
+          immerSet(set, (draft) => {
+            draft.stats.monthlyTotalArticles.error = (err as Error).message;
+          });
+        }
+        immerSet(set, (draft) => {
+          draft.stats.monthlyTotalArticles.loading = false;
+        });
       },
     },
   },

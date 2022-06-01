@@ -15,6 +15,8 @@ const InsightPage: React.FC<{}> = () => {
   const [categorySelection, setCategorySelection] =
     useState<string | null>(null);
 
+  const [monthSelection, setMonthSelection] = useState<string>('5/2022');
+
   /* * Zustand's slice states * */
   const {
     data: dataKeyword,
@@ -55,8 +57,12 @@ const InsightPage: React.FC<{}> = () => {
   };
 
   useEffect(() => {
-    fetchMonthlyTotalArticles(5, 2022);
-  }, [fetchMonthlyTotalArticles]);
+    if (monthSelection) {
+      const month = parseInt(monthSelection.split('/')[0]);
+      const year = parseInt(monthSelection.split('/')[1]);
+      fetchMonthlyTotalArticles(month, year);
+    }
+  }, [fetchMonthlyTotalArticles, monthSelection]);
 
   /**
    * Initial fetch category
@@ -100,11 +106,19 @@ const InsightPage: React.FC<{}> = () => {
   }, [errorCategory]);
 
   /**
-   * Handle categorySelection change on select
+   * Handle categorySelection change on select event
    * @param category Category
    */
   const handleCategoryChange = (category: string) => {
     setCategorySelection(category);
+  };
+
+  /**
+   * Handle month a year change on select event
+   * @param month Month of a year
+   */
+  const handleMonthChange = (month: string) => {
+    setMonthSelection(month);
   };
 
   return (
@@ -124,7 +138,7 @@ const InsightPage: React.FC<{}> = () => {
                   onChange={handleCategoryChange}
                 >
                   {categoryNameList.map((category) => (
-                    <Select.Option value={category}>
+                    <Select.Option key={`select_${category}`} value={category}>
                       {capitalize(category)}
                     </Select.Option>
                   ))}
@@ -147,18 +161,21 @@ const InsightPage: React.FC<{}> = () => {
         </Col>
       </Row>
       <br />
+      <br />
       <Row gutter={24}>
         {/* Pie Chart Section */}
-        <Col span={12}>
+        <Col md={12} xs={24}>
           <Row>
-            <p
-              className={styles['chart-label']}
-              style={{
-                marginBottom: 5,
-              }}
-            >
-              Category Dominance (5/2022)
-            </p>
+            <Col span={18}>
+              <p className={styles['chart-label']}>Category Dominance</p>
+            </Col>
+            <Col span={6}>
+              <div className={clsx(styles['selector'], styles['selector-pos'])}>
+                <Select value={monthSelection} onChange={handleMonthChange}>
+                  <Select.Option value="5/2022">5/2022</Select.Option>
+                </Select>
+              </div>
+            </Col>
           </Row>
           <div
             className={styles['chart-container']}
@@ -173,17 +190,26 @@ const InsightPage: React.FC<{}> = () => {
             )}
           </div>
         </Col>
-        {/* Sentiment Section */}
-        <Col span={12}>
+        {/* Sentiment Gauge Section */}
+        <Col md={12} xs={24}>
           <Row>
-            <p
-              className={styles['chart-label']}
-              style={{
-                marginBottom: 5,
-              }}
-            >
-              Label
-            </p>
+            <Col span={18}>
+              <p className={styles['chart-label']}>Popular Keywords</p>
+            </Col>
+            <Col span={6}>
+              <div className={clsx(styles['selector'], styles['selector-pos'])}>
+                <Select
+                  value={loadingCategory ? 'Loading...' : categorySelection}
+                  onChange={handleCategoryChange}
+                >
+                  {categoryNameList.map((category) => (
+                    <Select.Option value={category}>
+                      {capitalize(category)}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
+            </Col>
           </Row>
           <div className={styles['chart-container']}>#2 Gauge Indicator</div>
         </Col>

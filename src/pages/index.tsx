@@ -3,7 +3,7 @@ import { NotificationPlacement } from 'antd/lib/notification';
 import { useEffect } from 'react';
 import { ArticleCard, Container } from '../components';
 import ReadMoreButton from '../components/ReadMoreButton';
-import useStore from '../store/root';
+import {useStore} from '../store/root';
 import styles from './IndexPage.module.scss';
 
 const IndexPage = () => {

@@ -1,4 +1,34 @@
+@import '../../styles/abstracts/colors';
+
 .container {
   min-height: 100vh;
   padding: 10px;
+}
+
+.article {
+  
+}
+
+.title {
+  font-family: 'Radio Canada';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.thumbnail {
+
+}
+
+.content {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+
+  white-space: pre-wrap;
+  text-align: justify;
 }

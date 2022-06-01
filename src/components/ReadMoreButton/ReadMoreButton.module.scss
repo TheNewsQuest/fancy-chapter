@@ -1,0 +1,24 @@
+@import '../../styles/abstracts/colors';
+@import '../../styles/abstracts/measures';
+
+.read-more-button {
+  font-size: map-get($map: $font-sizes, $key: 'medium');
+  background-color: $dark0;
+  height: fit-content;
+  width: 220px;
+  border: 1px solid $purple600;
+  color: #000;
+  align-items: center;
+  border-radius: map-get($map: $border-radiuses, $key: 'xs');
+  -webkit-transition: color 0.2s ease-out;
+  -moz-transition: color 0.2s ease-out;
+  -o-transition: color 0.2s ease-out;
+  -ms-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+}
+
+.read-more-button:hover:enabled {
+  color: $dark0;
+  background-color: $purple600;
+  cursor: pointer;
+}

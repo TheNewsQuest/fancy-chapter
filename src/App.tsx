@@ -1,3 +1,4 @@
+import { BackTop } from 'antd';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Footer, Header } from './components';
 import SwitchTab from './components/SwitchTab';
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<IndexPage />} />
           <Route path="/articles/:id" element={<ArticleDetailPage />} />
         </Routes>
+        <BackTop />
         <Footer />
       </Router>
     </>

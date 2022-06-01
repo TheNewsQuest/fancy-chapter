@@ -1,0 +1,73 @@
+[
+  { 
+    "_id" : ObjectId("629341c632393adb1fdc428a"), 
+    "title" : "Four arrested in central Vietnam for tiger trade", 
+    "thumbnailURL" : "https://vcdn-english.vnecdn.net/2022/05/29/honaucao2165374642315161653746-8139-8236-1653800156_680x408.jpg", 
+    "content" : "\nA couple from central Thanh Hoa Province and two others from central Nghe An Province have been arrested for trading a tiger carcass and making bone glue.\t\nPolice busted the tiger trading ring on May 28 and are now preparing to take Do Van Lan, 48 and his wife Nguyen Thi Oanh to court from breaking wildlife protection laws.\nHoang Van Hien, 48, and Nguyen Van Lieu, 55, both from Cau Giat Town in Nghe An’s Quynh Luu District, have also been detained to clarify their roles in the deal.\nOn April 15, police caught Lan and some people preparing to cut a dead tiger at his home before cooking it.\nThe seized a 145-kilogram tiger carcass being kept frozen, 5 kilograms of animal bones, six claws and 10 kilograms of bone glue, believed by many to be an effective medicine for certain ailments.\nLan and his wife said they bought the tiger for over VND130 million.\nIn mid-May, knowing the police had learned about the trading ring, Hien turned himself in and said that he had sold tigers to Lan. Lieu was assigned to transport tigers from Nghe An to Thanh Hoa.\nAccording to the law, those who arbitrarily keep tigers in captivity to butcher or make tiger bone glue or skin will be fined between VND500 million and VND2 billion and/or imprisoned for 1-5 years. If the number of captive tigers is more than 12, violators can face 10-15 years in prison.\nTigers are endangered animals listed on the International Union for Conservation of Nature (IUCN) Red List. Their population is threatened by poaching for illegal wildlife trade.\nAs of last year, there were around 360 tigers licensed to be raised in Vietnam, according to IUCN data.", 
+    "link" : "https://e.vnexpress.net/news/news/four-arrested-in-central-vietnam-for-tiger-trade-4469339.html", 
+    "author" : "Le Hoang", 
+    "category" : "news", 
+    "subcategory" : "news", 
+    "provider" : "vnexpress", 
+    "providerAvatarURL" : "https://i.ibb.co/nB5mS7y/image.png", 
+    "quests" : [
+        {
+            "description" : "When did Hien turn himself in?", 
+            "choices" : [
+                "On April 28", 
+                "On April 15", 
+                "Mid-May", 
+                "On April 25"
+            ], 
+            "answer" : 2, 
+            "createdAt" : ISODate("2022-05-29T09:45:56.764+0000")
+        }, 
+        {
+            "description" : "How many kilograms of tiger were seized?", 
+            "choices" : [
+                "5 kilograms", 
+                "145-kilogram", 
+                "six claws", 
+                "10 kilograms"
+            ], 
+            "answer" : 1, 
+            "createdAt" : ISODate("2022-05-29T09:45:56.764+0000")
+        }, 
+        {
+            "description" : "Where was Lieu assigned to transport tigers from?", 
+            "choices" : [
+                "Thanh Hoa", 
+                "Nghe An", 
+                "Cau Giat Town"
+            ], 
+            "answer" : 1, 
+            "createdAt" : ISODate("2022-05-29T09:45:56.764+0000")
+        }, 
+        {
+            "description" : "How many tigers were licensed to be raised in Vietnam last year?", 
+            "choices" : [
+                "145", 
+                "360", 
+                "10", 
+                "12"
+            ], 
+            "answer" : 1, 
+            "createdAt" : ISODate("2022-05-29T09:45:56.764+0000")
+        }, 
+        {
+            "description" : "How much did Lan and his wife buy the tiger?", 
+            "choices" : [
+                "Over VND130 million", 
+                "Over VND500 million", 
+                "Over VND2 billion", 
+                "Over VND250 million"
+            ], 
+            "answer" : 0, 
+            "createdAt" : ISODate("2022-05-29T09:45:56.764+0000")
+        }
+    ], 
+    "postedAt" : "2022-05-28 14:27:00", 
+    "createdAt" : ISODate("2022-05-29T09:45:56.764+0000"), 
+    "deletedAt" : null
+}
+]

@@ -1,8 +1,8 @@
 import { WordCloud } from '@ant-design/plots';
-import React from 'react';
+import { isEqual } from 'lodash';
+import React, { memo } from 'react';
 import { KeywordData } from '../../store/stats';
 import styles from './KeywordWordCloud.module.scss';
-
 interface KeywordWordCloudProps {
   data: KeywordData[];
 }
@@ -26,4 +26,6 @@ const KeywordWordCloud: React.FC<KeywordWordCloudProps> = ({ data }) => {
   );
 };
 
-export default KeywordWordCloud;
+export default memo(KeywordWordCloud, (prev, next) =>
+  isEqual(prev?.data, next?.data)
+);

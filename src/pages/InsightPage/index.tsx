@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from '../../components';
 import CategoryPie from '../../components/CategoryPie';
 import KeywordWordCloud from '../../components/KeywordWordCloud';
+import SentimentGauge from '../../components/SentimentGauge';
 import Spinner from '../../components/Spinner';
 import useStore from '../../store/root';
 import { capitalize } from '../../utils/string';
@@ -12,7 +13,10 @@ import styles from './InsightPage.module.scss';
 
 const InsightPage: React.FC<{}> = () => {
   /* * Component-scoped states * */
-  const [categorySelection, setCategorySelection] =
+  const [keywordCategorySelection, setKeywordCategorySelection] =
+    useState<string | null>(null);
+
+  const [sentimentCategorySelection, setSentimentCategorySelection] =
     useState<string | null>(null);
 
   const [monthSelection, setMonthSelection] = useState<string>('5/2022');
@@ -39,6 +43,13 @@ const InsightPage: React.FC<{}> = () => {
     error: errorMonthlyLoadingArticles,
   } = useStore((state) => state.stats.monthlyTotalArticles);
 
+  const {
+    data: dataSentiment,
+    loading: loadingSentiment,
+    error: errorSentiment,
+    fetch: fetchSentiment,
+  } = useStore((state) => state.stats.sentiment);
+
   /**
    * Open a error notification for acknowledging end-user
    * @param placement Placement of Pop-up notification
@@ -55,31 +66,45 @@ const InsightPage: React.FC<{}> = () => {
       placement,
     });
   };
-
+  /**
+   * Fetch sentiment scores
+   */
   useEffect(() => {
-    if (monthSelection) {
-      const month = parseInt(monthSelection.split('/')[0]);
-      const year = parseInt(monthSelection.split('/')[1]);
-      fetchMonthlyTotalArticles(month, year);
-    }
+    fetchSentiment();
+  }, [fetchSentiment]);
+
+  /**
+   * Fetch Monthly Total Articles
+   */
+  useEffect(() => {
+    const month = parseInt(monthSelection.split('/')[0]);
+    const year = parseInt(monthSelection.split('/')[1]);
+    fetchMonthlyTotalArticles(month, year);
   }, [fetchMonthlyTotalArticles, monthSelection]);
 
   /**
-   * Initial fetch category
+   * Fetch list of categories
    */
   useEffect(() => {
-    if (!categorySelection) {
-      fetchCategory();
-      setCategorySelection(categoryNameList[0]);
+    fetchCategory();
+  }, [fetchCategory]);
+
+  /**
+   * Set default category selection for keyword, sentiment
+   */
+  useEffect(() => {
+    if (categoryNameList.length > 0) {
+      setKeywordCategorySelection(categoryNameList[0]);
+      setSentimentCategorySelection(categoryNameList[0]);
     }
-  }, [fetchCategory, categorySelection, categoryNameList]);
+  }, [categoryNameList]);
 
   /**
    * Fetch keyword on success category fetch
    */
   useEffect(() => {
-    if (categorySelection) fetchKeyword(categorySelection);
-  }, [fetchKeyword, categorySelection]);
+    if (keywordCategorySelection) fetchKeyword(keywordCategorySelection);
+  }, [fetchKeyword, keywordCategorySelection]);
 
   /**
    * Pop-up error notification if keyword error is defined
@@ -94,7 +119,7 @@ const InsightPage: React.FC<{}> = () => {
   }, [errorKeyword]);
 
   /**
-   * Pop-up error notification if keyword error is defined
+   * Pop-up error notification if category error is defined
    */
   useEffect(() => {
     if (errorCategory)
@@ -106,11 +131,42 @@ const InsightPage: React.FC<{}> = () => {
   }, [errorCategory]);
 
   /**
-   * Handle categorySelection change on select event
+   * Pop-up error notification if category dominance error is defined
+   */
+  useEffect(() => {
+    if (errorMonthlyLoadingArticles)
+      openErrorNotification(
+        'Category dominance fetch error',
+        'bottomRight',
+        errorMonthlyLoadingArticles
+      );
+  }, [errorMonthlyLoadingArticles]);
+
+  /**
+   * Pop-up error notification if sentiment score error is defined
+   */
+  useEffect(() => {
+    if (errorSentiment)
+      openErrorNotification(
+        'Sentiment fetch error',
+        'bottomRight',
+        errorSentiment
+      );
+  }, [errorSentiment]);
+  /**
+   * Handle keywordCategorySelection change on select event
    * @param category Category
    */
-  const handleCategoryChange = (category: string) => {
-    setCategorySelection(category);
+  const handleKeywordCategoryChange = (category: string) => {
+    setKeywordCategorySelection(category);
+  };
+
+  /**
+   * Handle sentimentCategorySelection change on select event
+   * @param category Category
+   */
+  const handleSentimentCategoryChange = (category: string) => {
+    setSentimentCategorySelection(category);
   };
 
   /**
@@ -134,11 +190,16 @@ const InsightPage: React.FC<{}> = () => {
             <Col span={6}>
               <div className={clsx(styles['selector'], styles['selector-pos'])}>
                 <Select
-                  value={loadingCategory ? 'Loading...' : categorySelection}
-                  onChange={handleCategoryChange}
+                  value={
+                    loadingCategory ? 'Loading...' : keywordCategorySelection
+                  }
+                  onChange={handleKeywordCategoryChange}
                 >
                   {categoryNameList.map((category) => (
-                    <Select.Option key={`select_${category}`} value={category}>
+                    <Select.Option
+                      key={`select_keyword_${category}`}
+                      value={category}
+                    >
                       {capitalize(category)}
                     </Select.Option>
                   ))}
@@ -194,16 +255,23 @@ const InsightPage: React.FC<{}> = () => {
         <Col md={12} xs={24}>
           <Row>
             <Col span={18}>
-              <p className={styles['chart-label']}>Popular Keywords</p>
+              <p className={styles['chart-label']}>Sentiment Score</p>
             </Col>
             <Col span={6}>
               <div className={clsx(styles['selector'], styles['selector-pos'])}>
                 <Select
-                  value={loadingCategory ? 'Loading...' : categorySelection}
-                  onChange={handleCategoryChange}
+                  value={
+                    loadingSentiment || loadingCategory
+                      ? 'Loading...'
+                      : sentimentCategorySelection
+                  }
+                  onChange={handleSentimentCategoryChange}
                 >
                   {categoryNameList.map((category) => (
-                    <Select.Option value={category}>
+                    <Select.Option
+                      key={`select_sentiment_${category}`}
+                      value={category}
+                    >
                       {capitalize(category)}
                     </Select.Option>
                   ))}
@@ -211,7 +279,19 @@ const InsightPage: React.FC<{}> = () => {
               </div>
             </Col>
           </Row>
-          <div className={styles['chart-container']}>#2 Gauge Indicator</div>
+          <div className={styles['chart-container']}>
+            {/* NOTE: The one with useRef requires the component to be mounted beforehand. Use 'none' to hide it */}
+            {(loadingCategory || loadingSentiment) && <Spinner />}
+            <div
+              style={{
+                display: loadingSentiment || loadingCategory ? 'none' : 'block',
+              }}
+            >
+              <SentimentGauge
+                score={dataSentiment[sentimentCategorySelection as string]}
+              />
+            </div>
+          </div>
         </Col>
       </Row>
       <br />

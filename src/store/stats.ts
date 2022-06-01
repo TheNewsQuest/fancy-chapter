@@ -31,11 +31,28 @@ interface MonthlyTotalArticlesState {
   fetch: (month: number, year: number) => Promise<void>;
 }
 
+interface FetchSentimentData {
+  category: string;
+  sentiment: number;
+}
+
+interface SentimentData {
+  [key: string]: number;
+}
+
+interface SentimentState {
+  data: SentimentData;
+  error?: string;
+  loading: boolean;
+  fetch: () => Promise<void>;
+}
+
 export interface StatsSlice {
   stats: {
     category: CategoryState;
     keyword: KeywordState;
     monthlyTotalArticles: MonthlyTotalArticlesState;
+    sentiment: SentimentState;
   };
 }
 
@@ -122,6 +139,33 @@ const createStatsSlice: Slice<StatsSlice> = (set) => ({
         }
         immerSet(set, (draft) => {
           draft.stats.monthlyTotalArticles.loading = false;
+        });
+      },
+    },
+    sentiment: {
+      data: {},
+      loading: false,
+      error: undefined,
+      fetch: async () => {
+        immerSet(set, (draft) => {
+          draft.stats.sentiment.loading = true;
+        });
+        try {
+          const res = await axios.get(
+            `${configs.DUTY_API_V1_URL}/stats/sentiment-score`
+          );
+          immerSet(set, (draft) => {
+            res.data.data.forEach((d: FetchSentimentData) => {
+              draft.stats.sentiment.data[d.category] = d.sentiment;
+            });
+          });
+        } catch (err) {
+          immerSet(set, (draft) => {
+            draft.stats.sentiment.error = (err as Error).message;
+          });
+        }
+        immerSet(set, (draft) => {
+          draft.stats.sentiment.loading = false;
         });
       },
     },

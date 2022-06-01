@@ -3,6 +3,7 @@
 .container {
   min-height: 90vh;
   padding: 10px;
+  max-width: 1080px !important;
 }
 
 .header {
@@ -13,11 +14,12 @@
 }
 
 .container-article {
-  margin-bottom: map-get($map: $spacings, $key: 'md');
+  margin-bottom: map-get($map: $spacings, $key: 'lg');
 }
 
 .read-more-section {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 12px;
 }

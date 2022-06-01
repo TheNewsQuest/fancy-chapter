@@ -1,0 +1,50 @@
+@import '../../styles/abstracts/measures';
+@import '../../styles/abstracts/breakpoints';
+@import '../../styles/abstracts/colors';
+@import '../../styles/abstracts/mixins';
+
+.trend-page-container {
+  min-height: 90vh;
+}
+
+.header {
+  font-size: map-get($map: $font-sizes, $key: 'extra-large');
+  font-family: 'Rozha One', serif;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.wordcloud-section {
+  margin-top: 10px;
+}
+
+.selector {
+  :global(.ant-select-selector) {
+    min-width: 110px;
+    border: 1px solid $purple600;
+  }
+}
+
+.selector-pos {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.chart-label {
+  font-weight: 800;
+  font-size: map-get($map: $font-sizes, $key: 'medium');
+  margin-bottom: 0;
+}
+
+.chart-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* for single line flex container */
+  align-content: center; /* for multi-line flex container */
+  min-height: 420px;
+  padding: 15px;
+  border: 1px solid $purple600;
+  border-radius: map-get($map: $border-radiuses, $key: 'xs');
+}

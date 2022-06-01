@@ -71,7 +71,7 @@ const createStatsSlice: Slice<StatsSlice> = (set) => ({
         });
         try {
           const res = await axios.get(
-            `${configs.DUTY_API_V1_URL}/articles/keywords/${category}`
+            `${configs.DUTY_API_V1_URL}/stats/${category}/keywords`
           );
           immerSet(set, (draft) => {
             draft.stats.keyword.data = res.data.data;

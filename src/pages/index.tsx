@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { ArticleCard, Container } from '../components';
 import ReadMoreButton from '../components/ReadMoreButton';
 import useStore from '../store/root';
+import { extractPreview } from '../utils/string';
 import styles from './IndexPage.module.scss';
 
 const IndexPage = () => {
@@ -16,14 +17,6 @@ const IndexPage = () => {
     initFetch: initFetchArticles,
     moreFetch: moreFetchArticles,
   } = useStore((state) => state.article);
-
-  /**
-   * Extract preview from wall of text
-   * @param text Text-based content
-   * @returns Preview of text
-   */
-  const extractPreview = (text: string, limit = 10): string =>
-    `${text.split(' ').slice(0, limit).join(' ')}...`;
 
   useEffect(() => {
     initFetchArticles();

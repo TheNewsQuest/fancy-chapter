@@ -7,9 +7,8 @@ import styles from './Header.module.scss';
 const Header: React.FC = () => {
   const [click, setClick] = useState(false);
 
-  const handleClick: MouseEventHandler<
-    HTMLAnchorElement | HTMLDivElement
-  > = () => setClick(!click);
+  const handleClick: MouseEventHandler<HTMLAnchorElement | HTMLDivElement> =
+    () => setClick(!click);
   const close = () => setClick(false);
 
   return (
@@ -45,7 +44,7 @@ const Header: React.FC = () => {
             </li>
             <li className={styles['nav-item']}>
               <NavLink
-                to="/about"
+                to="/insight"
                 className={(navData) =>
                   navData.isActive
                     ? clsx(styles['active'], styles['nav-links'])
@@ -53,7 +52,7 @@ const Header: React.FC = () => {
                 }
                 onClick={click ? handleClick : undefined}
               >
-                About
+                Insight
               </NavLink>
             </li>
           </ul>

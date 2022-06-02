@@ -19,8 +19,10 @@ const IndexPage = () => {
   } = useStore((state) => state.article);
 
   useEffect(() => {
-    initFetchArticles();
-  }, [initFetchArticles]);
+    if (articles.length === 0) {
+      initFetchArticles();
+    }
+  }, [initFetchArticles, articles]);
 
   /**
    * Open a error notification for acknowledging end-user

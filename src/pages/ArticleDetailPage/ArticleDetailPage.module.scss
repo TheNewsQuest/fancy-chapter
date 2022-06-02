@@ -38,3 +38,10 @@
   white-space: pre-wrap;
   text-align: justify;
 }
+
+.article {
+  :global(.ant-btn-primary) {
+    background-color: $cyan600;
+    border: 0px;
+  }
+}

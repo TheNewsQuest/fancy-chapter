@@ -130,12 +130,7 @@ const ArticleDetailPage: React.FC = () => {
             </div>
 
             <div className={styles['content']}>
-              {
-                getParagraph(article.content)
-                // article.content.split(/\r?\n/).map((paragraph) => {
-                //   return <p className={styles["paragraph"]}>{paragraph}</p>
-                // })
-              }
+              {getParagraph(article.content)}
             </div>
 
             {/* Question Tab */}

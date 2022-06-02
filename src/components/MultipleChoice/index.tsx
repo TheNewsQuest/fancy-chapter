@@ -2,13 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Quest } from 'src/types/article';
 import styles from './MultipleChoice.module.scss';
 
-interface MultipleChoiceObject {
-  description: string;
-  choices: string[];
-  answer: number;
-  // userChoice: number
-}
-
 interface MultipleChoiceProps {
   list: Quest[];
 }
@@ -62,9 +55,6 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
       }
     }
 
-    // if (userChoice === -1 || userChoice !== currentIndex) return styles["no-answer"]
-    // if (currentIndex === correctIndex) return styles["correct-answer"]
-    // else return styles["wrong-answer"]
     return itemStyles;
   };
 

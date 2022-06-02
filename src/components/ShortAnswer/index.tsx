@@ -38,7 +38,7 @@ const ShortAnswer: React.FC<ShortAnswerProps> = ({ shortAnswerList }) => {
       <div className={styles['container']}>
         {shortAnswerList ? (
           <div className={styles['question-container']}>
-            {shortAnswer(shortAnswerList)}`
+            {shortAnswer(shortAnswerList)}
           </div>
         ) : (
           ''

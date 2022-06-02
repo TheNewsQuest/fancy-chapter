@@ -15,10 +15,10 @@ const SwitchTab: React.FC<SwitchTabProps> = ({ article }) => {
     <div className={styles['tab-container']}>
       <Tabs type="card" centered={true} defaultActiveKey="1">
         <TabPane tab="Multiple Choice" key="1">
-          {article ? <MultipleChoice list={article.quests} /> : ''}
+          {article && <MultipleChoice list={article.quests} />}
         </TabPane>
         <TabPane tab="Short Answer" key="2">
-          {article ? <ShortAnswer shortAnswerList={article.quests} /> : ''}
+          {article && <ShortAnswer shortAnswerList={article.quests} />}
         </TabPane>
       </Tabs>
     </div>

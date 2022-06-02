@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { Quest } from "src/types/article";
 import styles from "./MultipleChoice.module.scss";
 
 interface MultipleChoiceObject {
-  question: string;
-  answers: string[];
-  correctAnswerIndex: number;
+  description: string;
+  choices: string[];
+  answer: number;
   // userChoice: number
 }
 
 interface MultipleChoiceProps {
-  list: MultipleChoiceObject[];
+  list: Quest[];
 }
 
 const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
@@ -36,7 +37,7 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
   const countCorrectAnswer = () => {
     let count = 0
     for (let i = 0; i < list.length; i++) {
-      if (userChoices[i] === list[i].correctAnswerIndex) count++;
+      if (userChoices[i] === list[i].answer) count++;
     }
 
     return count;
@@ -78,13 +79,15 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
     console.log(choices);
 
     setUserChoices([...choices]);
-  }, [list.length]);
+  }, [list !== undefined ? list.length : 0]);
 
   const question = list.map((item, index) => {
+    console.log(list);
+    
     return (
       <div className={styles["multiple-choice-container"]}>
         <div className={styles["multiple-choice-question"]}>
-          {index + 1}. {item.question}
+          {index + 1}. {item.description}
         </div>
         <div>
           <ul
@@ -92,13 +95,13 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
               " "
             )}
           >
-            {item.answers.map((ans, ansIndex) => {
+            {item.choices.map((ans, ansIndex) => {
               return (
                 <li
                   className={chooseBackground(
                     userChoices[index],
                     ansIndex,
-                    item.correctAnswerIndex
+                    item.answer
                   ).join(" ")}
                   onClick={() => updateChoices(index, ansIndex)}
                 >
@@ -125,7 +128,7 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
 
   return (
     <div className={styles["container"]}>
-      {question}
+      {list !== undefined ? question : ""}
       {isAnswerAll() === true ? <div className={styles["total-scores"]}>Your score is {countCorrectAnswer()} out of {list.length}.</div> : ""}
     </div>
   );

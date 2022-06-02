@@ -3,6 +3,7 @@ import styles from "./SwitchTab.module.scss";
 import { Tabs } from "antd";
 import MultipleChoice from "../MultipleChoice";
 import ShortAnswer from "../ShortAnswer";
+import { Article } from "src/types/article";
 
 const { TabPane } = Tabs;
 let short_answer_mock_data = [
@@ -37,14 +38,22 @@ let multiple_choice_mock_data = [
 
 const onChange = (key: string) => {
   console.log(key);
-};
+}
 
-const SwitchTab = () => {
+interface SwitchTabProps {
+    article: Article;
+}
+
+const SwitchTab: React.FC<SwitchTabProps> = ({article}) => {
+  console.log("Switch tab");
+  console.log(article);
+  
+  
   return (
       <div className={styles["tab-container"]}>
         <Tabs type="card" centered={true} defaultActiveKey="1" onChange={onChange}>
           <TabPane tab="Multiple Choice" key="1">
-            <MultipleChoice list={multiple_choice_mock_data} />
+            {article !== undefined ? <MultipleChoice list={article.quests} /> : ""}
           </TabPane>
           <TabPane tab="Short Answer" key="2">
             <ShortAnswer shortAnswerList={short_answer_mock_data} />

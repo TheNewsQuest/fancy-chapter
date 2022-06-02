@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 import QRCode from "react-qr-code";
 import { Modal, Button, Space, Radio } from "antd";
 import { FaRegCheckSquare } from "react-icons/fa";
+import SwitchTab from "src/components/SwitchTab";
 
 type ArticleDetailParams = {
   id: string;
@@ -106,25 +107,31 @@ const ArticleDetailPage: React.FC = () => {
                 {article.category}
               </Button>
               <Button
-                  id="btn-author"
-                  shape="round"
-                  icon={<UserOutlined />}
-                  type="text"
-                >
-                  {article.author !== undefined ? article.author : ""}
-                </Button>
+                id="btn-author"
+                shape="round"
+                icon={<UserOutlined />}
+                type="text"
+              >
+                {article.author !== undefined ? article.author : ""}
+              </Button>
+              <Button
+                id="btn-author"
+                shape="round"
+                icon={<UserOutlined />}
+                type="text"
+              >
+                {article.provider !== undefined ? article.provider : ""}
+              </Button>
 
               <div className={styles["article-questions"]}>
                 <FaRegCheckSquare
                   className={styles["article-questions-icon"]}
                 />
                 <div className={styles["article-questions-content"]}>
-                  {article.quests !== undefined ? article.quests.length : 0} quests
+                  {article.quests !== undefined ? article.quests.length : 0}{" "}
+                  quests
                 </div>
               </div>
-              <Button id="btn-category" shape="round" size="large">
-              
-              </Button>
             </div>
 
             <div className={styles["content"]}>
@@ -137,6 +144,7 @@ const ArticleDetailPage: React.FC = () => {
             </div>
 
             {/* TODO: Question Tab */}
+            {article !== null ? <SwitchTab article={article} /> : ""}
             {/* QR Code*/}
             <ReachableContext.Provider value="Light">
               <Space>

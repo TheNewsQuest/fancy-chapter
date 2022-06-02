@@ -25,7 +25,7 @@ const createArticleDetailSlice: Slice<ArticleDetailSlice> = (set) => ({
       });
       try {
         // const res = await axios.get(`${configs.DUTY_API_V1_URL}/articles`);
-        const res = mockData[10];
+        const res = mockData[0];
         // Update articles data
         immerSet(set, (draft) => {
           draft.articleDetail.article = res;

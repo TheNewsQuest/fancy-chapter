@@ -53,10 +53,11 @@ const SwitchTab: React.FC<SwitchTabProps> = ({article}) => {
       <div className={styles["tab-container"]}>
         <Tabs type="card" centered={true} defaultActiveKey="1" onChange={onChange}>
           <TabPane tab="Multiple Choice" key="1">
-            {article !== undefined ? <MultipleChoice list={article.quests} /> : ""}
+            {article ? <MultipleChoice list={article.quests} /> : ""}
           </TabPane>
           <TabPane tab="Short Answer" key="2">
-            <ShortAnswer shortAnswerList={short_answer_mock_data} />
+            {article ? <ShortAnswer shortAnswerList={article.quests} /> : ""}
+            {/* <ShortAnswer shortAnswerList={short_answer_mock_data} /> */}
           </TabPane>
         </Tabs>
       </div>

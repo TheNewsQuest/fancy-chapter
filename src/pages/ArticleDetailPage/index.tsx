@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Container } from "../../components";
 import styles from "./ArticleDetailPage.module.scss";
 import useStore from "../../store/root";
-import { QrcodeOutlined, UserOutlined } from "@ant-design/icons";
+import { QrcodeOutlined, UserOutlined, GlobalOutlined } from "@ant-design/icons";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import { useLocation } from "react-router-dom";
 import QRCode from "react-qr-code";
@@ -117,7 +117,7 @@ const ArticleDetailPage: React.FC = () => {
               <Button
                 id="btn-author"
                 shape="round"
-                icon={<UserOutlined />}
+                icon={<GlobalOutlined />}
                 type="text"
               >
                 {article.provider !== undefined ? article.provider : ""}
@@ -143,8 +143,9 @@ const ArticleDetailPage: React.FC = () => {
               }
             </div>
 
-            {/* TODO: Question Tab */}
-            {article !== null ? <SwitchTab article={article} /> : ""}
+            {/* Question Tab */}
+            <SwitchTab article={article} />
+              
             {/* QR Code*/}
             <ReachableContext.Provider value="Light">
               <Space>

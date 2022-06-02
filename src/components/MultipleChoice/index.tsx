@@ -34,7 +34,7 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
     return true;
   };
 
-  const countCorrectAnswer = () => {
+  const countCorrectAnswer = (list: Quest[]) => {
     let count = 0
     for (let i = 0; i < list.length; i++) {
       if (userChoices[i] === list[i].answer) count++;
@@ -71,65 +71,68 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ list }) => {
   };
 
   useEffect(() => {
-    const choices: number[] = [];
-    for (let i = 0; i < list.length; i++) {
-      choices.push(-1);
+    if (list) {
+      const choices: number[] = [];
+      for (let i = 0; i < list.length; i++) {
+        choices.push(-1);
+      }
+      // console.log("All choices:");
+      // console.log(choices);
+  
+      setUserChoices([...choices]);
     }
-    console.log("All choices:");
-    console.log(choices);
 
-    setUserChoices([...choices]);
-  }, [list !== undefined ? list.length : 0]);
+  }, [list]);
 
-  const question = list.map((item, index) => {
-    console.log(list);
-    
-    return (
-      <div className={styles["multiple-choice-container"]}>
-        <div className={styles["multiple-choice-question"]}>
-          {index + 1}. {item.description}
-        </div>
-        <div>
-          <ul
-            className={[styles["unorder-list"], styles["random-class"]].join(
-              " "
-            )}
-          >
-            {item.choices.map((ans, ansIndex) => {
-              return (
-                <li
-                  className={chooseBackground(
-                    userChoices[index],
-                    ansIndex,
-                    item.answer
-                  ).join(" ")}
-                  onClick={() => updateChoices(index, ansIndex)}
-                >
-                  <label
-                    htmlFor={"question-" + index + "-option-" + ansIndex}
-                    className={styles["answer-container"]}
+  const question = (list: Quest[]) => {
+    return list.map((item, index) => {      
+      return (
+        <div className={styles["multiple-choice-container"]}>
+          <div className={styles["multiple-choice-question"]}>
+            {index + 1}. {item.description}
+          </div>
+          <div>
+            <ul
+              className={[styles["unorder-list"], styles["random-class"]].join(
+                " "
+              )}
+            >
+              {item.choices.map((ans, ansIndex) => {
+                return (
+                  <li
+                    className={chooseBackground(
+                      userChoices[index],
+                      ansIndex,
+                      item.answer
+                    ).join(" ")}
+                    onClick={() => updateChoices(index, ansIndex)}
                   >
-                    <input
-                      name={"question-" + index}
-                      type="radio"
-                      id={"question-" + index + "-option-" + ansIndex}
-                    />
-                    <span className={styles["checkmark"]}></span>
-                    {ans}
-                  </label>
-                </li>
-              );
-            })}
-          </ul>
+                    <label
+                      htmlFor={"question-" + index + "-option-" + ansIndex}
+                      className={styles["answer-container"]}
+                    >
+                      <input
+                        name={"question-" + index}
+                        type="radio"
+                        id={"question-" + index + "-option-" + ansIndex}
+                      />
+                      <span className={styles["checkmark"]}></span>
+                      {ans}
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
-      </div>
-    );
-  });
+      );
+    });
+  }
 
   return (
     <div className={styles["container"]}>
-      {list !== undefined ? question : ""}
-      {isAnswerAll() === true ? <div className={styles["total-scores"]}>Your score is {countCorrectAnswer()} out of {list.length}.</div> : ""}
+      {list ? question(list) : ""}
+      {list && isAnswerAll() === true ? <div className={styles["total-scores"]}>Your score is {countCorrectAnswer(list)} out of {list.length}.</div> : ""}
     </div>
   );
 };

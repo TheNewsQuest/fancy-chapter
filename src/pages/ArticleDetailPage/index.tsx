@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { notification, Skeleton } from "antd";
 import { NotificationPlacement } from "antd/lib/notification";
 import { useParams } from "react-router-dom";
 import { Container } from "../../components";
 import styles from "./ArticleDetailPage.module.scss";
 import useStore from "../../store/root";
-import { Button, Radio } from "antd";
 import { QrcodeOutlined } from "@ant-design/icons";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
+import { useLocation } from "react-router-dom";
+import QRCode from "react-qr-code";
+import { Modal, Button, Space, Radio } from "antd";
 
 type ArticleDetailParams = {
   id: string;
 };
 
+const ReachableContext = createContext<string | null>(null);
+const UnreachableContext = createContext<string | null>(null);
+
 const ArticleDetailPage: React.FC = () => {
+  const sampleLocation = useLocation();
+
+  const [modal, contextHolder] = Modal.useModal();
 
   const {
     article,
@@ -56,11 +64,24 @@ const ArticleDetailPage: React.FC = () => {
     return "";
   };
 
-  const displayQRCodeModal = () => {
-    return (
-      <></>
-    )
-  }
+  // const displayQRCodeModal = () => {
+  //   let currentURL = window.location.href;
+  //   console.log("HERE YOUR URL!");
+  //   console.log(currentURL);
+  // };
+
+  const getCodeConfig = () => {
+    const currentURL = window.location.href
+    const config = {
+      title: "QR Code",
+      content: (
+        <>
+          <QRCode value={currentURL} />
+        </>
+      ),
+    };
+    return config;
+  };
 
   return (
     <>
@@ -90,9 +111,25 @@ const ArticleDetailPage: React.FC = () => {
 
             {/* TODO: Question Tab */}
             {/* QR Code*/}
-            <Button type="primary" icon={<QrcodeOutlined />} size={"large"} onClick={() => displayQRCodeModal()}>
-              Get QR Code
-            </Button>
+            <ReachableContext.Provider value="Light">
+              <Space>
+                <Button
+                  type="primary"
+                  icon={<QrcodeOutlined />}
+                  size={"large"}
+                  onClick={() => {
+                    modal.info(getCodeConfig());
+                  }}
+                >
+                  Get QR Code
+                </Button>
+              </Space>
+              {/* `contextHolder` should always under the context you want to access */}
+              {contextHolder}
+
+              {/* Can not access this context since `contextHolder` is not in it */}
+              <UnreachableContext.Provider value="Bamboo" />
+            </ReachableContext.Provider>
           </div>
         )}
       </Container>

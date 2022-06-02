@@ -5,11 +5,12 @@ import { useParams } from "react-router-dom";
 import { Container } from "../../components";
 import styles from "./ArticleDetailPage.module.scss";
 import useStore from "../../store/root";
-import { QrcodeOutlined } from "@ant-design/icons";
+import { QrcodeOutlined, UserOutlined } from "@ant-design/icons";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import { useLocation } from "react-router-dom";
 import QRCode from "react-qr-code";
 import { Modal, Button, Space, Radio } from "antd";
+import { FaRegCheckSquare } from "react-icons/fa";
 
 type ArticleDetailParams = {
   id: string;
@@ -71,7 +72,7 @@ const ArticleDetailPage: React.FC = () => {
   // };
 
   const getCodeConfig = () => {
-    const currentURL = window.location.href
+    const currentURL = window.location.href;
     const config = {
       title: "QR Code",
       content: (
@@ -100,6 +101,32 @@ const ArticleDetailPage: React.FC = () => {
               src={article.thumbnailURL}
               alt="Alt text"
             />
+            <div className={styles["other-info"]}>
+              <Button id="btn-category" shape="round" size="large">
+                {article.category}
+              </Button>
+              <Button
+                  id="btn-author"
+                  shape="round"
+                  icon={<UserOutlined />}
+                  type="text"
+                >
+                  {article.author !== undefined ? article.author : ""}
+                </Button>
+
+              <div className={styles["article-questions"]}>
+                <FaRegCheckSquare
+                  className={styles["article-questions-icon"]}
+                />
+                <div className={styles["article-questions-content"]}>
+                  {article.quests !== undefined ? article.quests.length : 0} quests
+                </div>
+              </div>
+              <Button id="btn-category" shape="round" size="large">
+              
+              </Button>
+            </div>
+
             <div className={styles["content"]}>
               {
                 getParagraph(article.content)

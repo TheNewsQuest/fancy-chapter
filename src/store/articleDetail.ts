@@ -34,12 +34,9 @@ const createArticleDetailSlice: Slice<ArticleDetailSlice> = (set) => ({
           draft.articleDetail.error = (err as Error).message;
         });
       }
-      // NOTE: Fake async
-      setTimeout(() => {
-        immerSet(set, (draft) => {
-          draft.articleDetail.initLoading = false;
-        });
-      }, 2000);
+      immerSet(set, (draft) => {
+        draft.articleDetail.initLoading = false;
+      });
     },
   },
 });

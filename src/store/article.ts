@@ -69,11 +69,9 @@ const createArticleSlice: Slice<ArticleSlice> = (set) => ({
           },
         });
         // Update articles data
-        setTimeout(() => {
-          immerSet(set, (draft) => {
-            draft.article.articles.push(...res.data.data);
-          });
-        }, 1000);
+        immerSet(set, (draft) => {
+          draft.article.articles.push(...res.data.data);
+        });
         // Update cursor
         immerSet(set, (draft) => {
           draft.article.cursor = {

@@ -2,6 +2,7 @@ import produce, { Draft } from 'immer';
 import create, { GetState, SetState } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import createArticleSlice, { ArticleSlice } from './article';
+import createArticleDetailSlice, {ArticleDetailSlice} from './articleDetail';
 import createStatsSlice, { StatsSlice } from './stats';
 
 export type Slice<T extends object, E extends object = T> = (
@@ -20,7 +21,8 @@ export const immerSet = <T extends object>(
   fn: (draft: Draft<T>) => void
 ) => set(produce<T>(fn));
 
-export type RootSlice = ArticleSlice & StatsSlice;
+export type RootSlice = ArticleSlice & ArticleDetailSlice & StatsSlice;
+// export type RootSlice2 = ArticleDetailSlice;
 
 /**
  * Create Root slice for Zustand single global store
@@ -33,9 +35,9 @@ const createRootSlice = (
   get: GetState<RootSlice>
 ) => ({
   ...createArticleSlice(set, get),
+  ...createArticleDetailSlice(set, get),
   ...createStatsSlice(set, get),
 });
 
 const useStore = create<RootSlice>()(devtools(createRootSlice));
-
 export default useStore;
